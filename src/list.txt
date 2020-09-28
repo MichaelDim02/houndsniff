@@ -45,8 +45,18 @@ Tiger192,3
 Tiger128,4
 Tiger160,4
 Tiger192,4
-LM
+MD5 (half)
+CRC16
+DomainCachedCredentials
+MD5 (half)
+MD4 HMAC
+MD5 HMAC
 Wordpress hash
 MD5 crypt(3)
 SHA256 crypt(3)
 SHA512 crypt(3)
+Base64 (I know it's not a hash)
+APR1
+phpBB
+SHA1 Django
+MD5 Joomla (pass:salt)

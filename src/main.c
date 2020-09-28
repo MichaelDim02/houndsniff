@@ -13,7 +13,7 @@ void banner(float vesion){
 	
 	//https://www.asciiart.eu/animals/dogs
 	
-	printf("Houndsniff - Hash Identification Program - Version %.1f\nBy MCD\n\n",vesion);
+	printf("Houndsniff - Hash Identification Program - Version %.1f\nBy MCD Sep 2020\n\n",vesion);
 }
 
 void list_() {
@@ -44,6 +44,17 @@ void definite(char string[1000], int length){
 		exit(0);
 	} else if (string[length-1]=='=') {
 		printf("[+] Definite identification: Base64\n");
+		exit(0);
+	} else if (string[0]=='$' && string[1]=='a' && string[2]=='p' && string[3]=='r' && string[4]=='1' && string[5]=='$'){
+		printf("[+] Definite identification: APR1\n");
+		exit(0);
+	} else if (string[0]=='$' && string[1]=='H' && string[2]=='$') {
+		printf("[+] Definite identification: phpBB\n");
+	} else if (string[0]=='s' && string[1]=='h' && string[2]=='a' && string[3]=='1' && string[4]=='$'){
+		printf("[+] Definite identification: SHA1 Django\n");
+		exit(0);
+	} else if (string[32]==':' && length==65) {
+		printf("[+] Definite identification: MD5 Joomla (pass:salt)\n");
 		exit(0);
 	}
 }
@@ -79,7 +90,7 @@ void help(){
 	printf("\nUsage: hound [HASH]\n");
 }
 int main(int argc, char* argv[]) {
-	float version = 1.0;
+	float version = 1.1;
 	banner(version);
 	if(argc>1){
 		if(strcmp(argv[1],"-h")==0 || strcmp(argv[1],"--help")==0){
