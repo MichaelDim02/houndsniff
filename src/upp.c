@@ -5,17 +5,19 @@
 
 bool hasUpper(char ch[600]);
 
-bool hasUpper(char ch[600]) {
+bool
+hasUpper(char ch[600]) {
 	
 	bool hup = false;
 
 	int len = strlen(ch);
+	int i;
 	
-	for (int i=0; i<len; i++) {
+	for (i=0; i<len; i++) {
 		if (ch[i] >= 'A' && ch[i] <= 'Z') {
 			hup = true;
 			break;
-		}  //else if (ch[i] >= 'a' && ch[i] <= 'z') {
+		}  /*else if (ch[i] >= 'a' && ch[i] <= 'z') {*/
 	} 
 	return hup;
 }
