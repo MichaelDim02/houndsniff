@@ -5,22 +5,37 @@
 #include "upp.h"
 #include "select.h"
 
-void banner(float vesion){ 
+/* Houndsniff
+ * hash identification program in C
+ * by Michael Constantine Dimopoulos (Kerberos) 
+ */
+ 
+void
+banner(float vesion){ 
 	printf("          __               \n");
 	printf("(\\,------'()'--o  Sniff..\n");
 	printf(" l_ )  _   /-''    Sniff...\n");
 	printf("  /_)_) /_)_)\n\n");
 	
-	//https://www.asciiart.eu/animals/dogs
+	/*https://www.asciiart.eu/animals/dogs*/
 	
 	printf("Houndsniff - Hash Identification Program - Version %.1f\nBy MCD Sep 2020\n\n",vesion);
 }
 
-void list_() {
+/* This function prints out the supported hashes
+   The reason I used a text file is because
+   1. it's easier 
+   2. it's simpler and
+   3. I can add comments etc.
+   */
+
+void
+list_(){
 	printf("\nHoundsniff supports:\n\n");
-int c;
+	int c;
 	FILE *file;
 	file = fopen("list.txt", "r");
+
 	if (file) {
 		while ((c = getc(file)) != EOF)
 			putchar(c);
@@ -29,7 +44,13 @@ int c;
 
 }
 
-void definite(char string[1000], int length){
+/* This is the first test;
+ * here we identify the hash
+ * based on *definite* characteristics
+ */
+
+void
+definite(char string[1000], int length){
 	if (string[0]=='$' && string[1]=='P' && string[2]=='$'){
 		printf("[+] Definite identification: Wordpress hash\n");
 		exit(0);
@@ -59,22 +80,24 @@ void definite(char string[1000], int length){
 	}
 }
 
-const char* charset(char string[1000]){
+/* this function determines charset (used later for identification)*/
+const char*
+charset(char string[1000]){
 	const char* result;
-	if (strchr(string, '$') != NULL){
+	if (strchr(string, '$') != NULL)
 		return "b";	
-	} else if (strchr(string, '/') != NULL){
+	else if (strchr(string, '/') != NULL)
 		return "c";
-	} else if (string[0]=='0' && string[1]=='x' && string[2]=='0'){
+	else if (string[0]=='0' && string[1]=='x' && string[2]=='0')
 		return "d";
-	} else if (hasUpper(string)==true) {
+	else if (hasUpper(string)==true)
 		return "e";
-	} else {
+	else
 		return "a";
-	}
 }
 
-void help(){
+void
+help(void){
 	printf("Houndsniff is a hash recognition program\n");
 	printf("It works by extracting some info about the\n");
 	printf("the hash and comparing it to info about\n");
@@ -89,9 +112,13 @@ void help(){
 	printf("-l to list supported hashing algorithms\n");
 	printf("\nUsage: hound [HASH]\n");
 }
-int main(int argc, char* argv[]) {
-	float version = 1.1;
+
+int
+main(int argc, char* argv[])
+{
+	float version = 1.2;
 	banner(version);
+
 	if(argc>1){
 		if(strcmp(argv[1],"-h")==0 || strcmp(argv[1],"--help")==0){
 			help();
