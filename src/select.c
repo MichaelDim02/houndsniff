@@ -4,14 +4,19 @@
 #include <stdlib.h>
 #include "select.h"
 
+/* this is basically where the program
+   indexes through the database and pick
+   out the rows with desired values */
+
 int counter = 0;
 int callback(void *, int, char **, char **);
 int sel(int length, const char *charset);
 
-int sel(int length, const char *charset) {
+int
+sel(int length, const char *charset) {
 	sqlite3 *db;
 	char *err_msg = 0;
-	//int count = 0;
+	/*int count = 0;*/
 	
 	int rc = sqlite3_open("hashes", &db);
 	char sql[1150], len[5], pt2[30], pt3[40];
@@ -31,9 +36,13 @@ int sel(int length, const char *charset) {
 	return 0;
 }
 
-int callback(void *unused, int argc, char **argv, char **azColName) {
+int
+callback(void *unused, int argc, char **argv, char **azColName)
+{
 	counter++;
-	for (int i = 0; i < argc; i++) {
+	int i;
+
+	for (i = 0; i < argc; i++) {
 		if (counter == 1) {
 			printf("Possible results:\n\n[%d] %s", counter, argv[i] ? argv[i] : "NULL");
 		} else {
