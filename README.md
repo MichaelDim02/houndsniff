@@ -9,4 +9,4 @@ git clone https://github.com/michaeldim02/houndsniff.git && cd houndsniff && chm
 
 Compile (ANSI compatible)
 ----
-gcc upp.h upp.c main.c select.c select.h -lsqlite3 -std=c99 -ansi -o hound
+gcc main.c select.c -lsqlite3 -std=c99 -ansi -o hound
