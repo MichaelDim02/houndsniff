@@ -13,7 +13,8 @@ int callback(void *, int, char **, char **);
 int sel(int length, const char *charset);
 
 int
-sel(int length, const char *charset) {
+sel(int length, const char *charset)
+{
 	sqlite3 *db;
 	char *err_msg = 0;
 	/*int count = 0;*/
