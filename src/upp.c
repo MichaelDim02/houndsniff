@@ -6,8 +6,8 @@
 bool hasUpper(char ch[600]);
 
 bool
-hasUpper(char ch[600]) {
-	
+hasUpper(char ch[600])
+{
 	bool hup = false;
 
 	int len = strlen(ch);
