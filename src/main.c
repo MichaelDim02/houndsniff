@@ -119,7 +119,7 @@ charset(char string[1000])
 void
 help(void)
 {
-	printf("Houndsniff is  a hash  recognition  program\n");
+	printf("Houndsniff is  a hash recognition  program\n");
 	printf("It works by extracting some info about the\n");
 	printf("the  hash  and comparing it to  info about\n");
 	printf("other  hashes in an SQLite  database. Then,\n");
