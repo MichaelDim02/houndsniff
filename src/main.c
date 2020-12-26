@@ -119,14 +119,14 @@ charset(char string[1000])
 void
 help(void)
 {
-	printf("Houndsniff is a hash recognition program\n");
+	printf("Houndsniff is  a hash  recognition  program\n");
 	printf("It works by extracting some info about the\n");
-	printf("the hash and comparing it to info about\n");
-	printf("other hashes in an SQLite database. Then,\n");
+	printf("the  hash  and comparing it to  info about\n");
+	printf("other  hashes in an SQLite  database. Then,\n");
 	printf("it prints the matches sorted by popularity.\n");
-	printf("Their popularity is determined by Google\n");
-	printf("search result numbers in comparison to\n");
-	printf("to other hashes with the same characteristcs\n\n");
+	printf("Their  popularity  is  determined  by  web\n");
+	printf("search  result  numbers  in  comparison to\n");
+	printf("to other  hashes  with  the  same features\n\n");
 	printf("If your hash includes a dollar sign ($), make\nsure you place it in between quotes.\n\n");
 	printf("Send missing hashes at houndsniff@protonmail.com\n\n");
 	printf("-h to display this panel and exit\n");
