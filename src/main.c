@@ -1,17 +1,19 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include <stdlib.h>
 #include "upp.h"
 #include "select.h"
 
-/* Houndsniff
+/*
+ * Houndsniff
  * hash identification program in C
  * by Michael Constantine Dimopoulos (Kerberos) 
  */
  
 void
-banner(float vesion){ 
+banner(float vesion)
+{ 
 	printf("          __               \n");
 	printf("(\\,------'()'--o  Sniff..\n");
 	printf(" l_ )  _   /-''    Sniff...\n");
@@ -27,10 +29,11 @@ banner(float vesion){
    1. it's easier 
    2. it's simpler and
    3. I can add comments etc.
-   */
+*/
 
 void
-list_(){
+list_()
+{
 	printf("\nHoundsniff supports:\n\n");
 	int c;
 	FILE *file;
@@ -48,9 +51,9 @@ list_(){
  * here we identify the hash
  * based on *definite* characteristics
  */
-
 void
-definite(char string[1000], int length){
+definite(char string[1000], int length)
+{
 	if (string[0]=='$' && string[1]=='P' && string[2]=='$'){
 		printf("[+] Definite identification: Wordpress hash\n");
 		exit(0);
@@ -82,7 +85,8 @@ definite(char string[1000], int length){
 
 /* this function determines charset (used later for identification)*/
 const char*
-charset(char string[1000]){
+charset(char string[1000])
+{
 	const char* result;
 	if (strchr(string, '$') != NULL)
 		return "b";	
@@ -97,7 +101,8 @@ charset(char string[1000]){
 }
 
 void
-help(void){
+help(void)
+{
 	printf("Houndsniff is a hash recognition program\n");
 	printf("It works by extracting some info about the\n");
 	printf("the hash and comparing it to info about\n");
