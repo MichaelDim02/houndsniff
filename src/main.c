@@ -87,7 +87,6 @@ definite(char string[1000], int length)
 const char*
 charset(char string[1000])
 {
-	const char* result;
 	if (strchr(string, '$') != NULL)
 		return "b";	
 	else if (strchr(string, '/') != NULL)
