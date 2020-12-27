@@ -17,7 +17,6 @@ sel(int length, const char *charset)
 {
 	sqlite3 *db;
 	char *err_msg = 0;
-	/*int count = 0;*/
 	
 	int rc = sqlite3_open("hashes", &db);
 	char sql[1150], len[5], pt2[30], pt3[40];
@@ -44,11 +43,10 @@ callback(void *unused, int argc, char **argv, char **azColName)
 	int i;
 
 	for (i = 0; i < argc; i++) {
-		if (counter == 1) {
+		if (counter == 1)
 			printf("Possible results:\n\n[%d] %s", counter, argv[i] ? argv[i] : "NULL");
-		} else {
-			printf("[%d] %s", counter, argv[i] ? argv[i] : "NULL");
-		}	
+		else
+			printf("[%d] %s", counter, argv[i] ? argv[i] : "NULL");	
 	} printf("\n");
 	return 0;
 }
