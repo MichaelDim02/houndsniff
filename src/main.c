@@ -9,10 +9,12 @@
  * hash identification program in C
  * by Michael Constantine Dimopoulos (Kerberos) 
  */
+
+char version[4] = "1.3";
  
 /* has uppercase letters */
 bool
-hasUpper(char ch[600])
+hasUpper(char ch[])
 {
 	bool hup = false;
 
@@ -29,27 +31,26 @@ hasUpper(char ch[600])
 }
 
 void
-banner(float vesion)
+banner()
 { 
-	printf("          __               \n");
+	printf("          __\n");
 	printf("(\\,------'()'--o  Sniff..\n");
-	printf(" l_ )  _   /-''    Sniff...\n");
-	printf("  /_)_) /_)_)\n\n");
-	
+	printf(" l_ ) _    /-''    Sniff...\n");
+	printf(" /_)_) /_)_)\n\n");
 	/*https://www.asciiart.eu/animals/dogs*/
 	
-	printf("Houndsniff - Hash Identification Program - Version %.1f\nBy MCD Sep 2020\n\n",vesion);
+	printf("Houndsniff - Hash Identification Program - Version %s\nBy MCD Sep 2020\n\n",version);
 }
 
 /* This function prints out the supported hashes
-   The reason I used a text file is because
-   1. it's easier 
-   2. it's simpler and
-   3. I can add comments etc.
-*/
+ * The reason I used a text file is because
+ * 1. it's easier 
+ * 2. it's simpler and
+ * 3. I can add comments etc.
+ */
 
 void
-list_()
+list_(void)
 {
 	printf("\nHoundsniff supports:\n\n");
 	int c;
@@ -69,7 +70,7 @@ list_()
  * based on *definite* characteristics
  */
 void
-definite(char string[1000], int length)
+definite(char string[], int length)
 {
 	if (string[0]=='$' && string[1]=='P' && string[2]=='$'){
 		printf("[+] Definite identification: Wordpress hash\n");
@@ -91,10 +92,11 @@ definite(char string[1000], int length)
 		exit(0);
 	} else if (string[0]=='$' && string[1]=='H' && string[2]=='$') {
 		printf("[+] Definite identification: phpBB\n");
+		exit(0);
 	} else if (string[0]=='s' && string[1]=='h' && string[2]=='a' && string[3]=='1' && string[4]=='$'){
 		printf("[+] Definite identification: SHA1 Django\n");
 		exit(0);
-	} else if (string[32]==':' && length==65) {
+	} else if (strlen(string)>31 && string[32]==':' && length==65) {
 		printf("[+] Definite identification: MD5 Joomla (pass:salt)\n");
 		exit(0);
 	}
@@ -102,7 +104,7 @@ definite(char string[1000], int length)
 
 /* this function determines charset (used later for identification)*/
 const char*
-charset(char string[1000])
+charset(char string[])
 {
 	if (strchr(string, '$') != NULL)
 		return "b";	
@@ -120,7 +122,7 @@ void
 help(void)
 {
 	printf("Houndsniff is  a hash recognition  program\n");
-	printf("It works by extracting some info about the\n");
+	printf("It works  by  extracting some  info  about\n");
 	printf("the  hash  and comparing it to  info about\n");
 	printf("other  hashes in an SQLite  database. Then,\n");
 	printf("it prints the matches sorted by popularity.\n");
@@ -137,8 +139,7 @@ help(void)
 int
 main(int argc, char* argv[])
 {
-	float version = 1.2;
-	banner(version);
+	banner();
 
 	if(argc>1){
 		if(strcmp(argv[1],"-h")==0 || strcmp(argv[1],"--help")==0){
@@ -155,7 +156,7 @@ main(int argc, char* argv[])
 			definite(argv[1], len);
 		}
 	} else {
-		printf("Usage: hound [HASH] or -h for help\n");
+		printf("Usage: %s [HASH] or -h for help\n", argv[0]);
 	}
 	return 0;
 }
