@@ -10,24 +10,21 @@
  * by Michael Constantine Dimopoulos (Kerberos) 
  */
 
-char version[4] = "1.3";
+char version[4] = "1.4";
  
 /* has uppercase letters */
 bool
 hasUpper(char ch[])
 {
-	bool hup = false;
-
 	int len = strlen(ch);
 	int i;
 	
 	for (i=0; i<len; i++) {
 		if (ch[i] >= 'A' && ch[i] <= 'Z') {
-			hup = true;
-			break;
+			return true;
 		}  /*else if (ch[i] >= 'a' && ch[i] <= 'z') {*/
 	} 
-	return hup;
+	return false;
 }
 
 void
