@@ -9,7 +9,7 @@ git clone https://github.com/michaeldim02/houndsniff.git && cd houndsniff && chm
 
 Compile (c89)
 ----
-gcc main.c select.c -lsqlite3 -std=c90 -o hound
+gcc main.c select.c -lsqlite3 -std=c89 -o hound
 
 Thanks
 ----
