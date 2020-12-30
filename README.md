@@ -13,4 +13,4 @@ gcc main.c select.c -lsqlite3 -std=c90 -o hound
 
 Thanks
 ----
-Thanks a lot to tuu and fizzie, as well as Martin K. on ##c @ freenode for their revisions and suggestions! (even though I've yet to implement everything). I truly appreciate the help.
+Thanks a lot to tuu and fizzie, as well as kurahaupo on ##c @ freenode for their revisions and suggestions! (even though I've yet to implement everything). I truly appreciate the help.
