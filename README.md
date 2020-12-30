@@ -7,7 +7,7 @@ Clone & Install
 ----
 git clone https://github.com/michaeldim02/houndsniff.git && cd houndsniff && chmod +x hound
 
-Compile (c90)
+Compile (c89)
 ----
 gcc main.c select.c -lsqlite3 -std=c90 -o hound
 
