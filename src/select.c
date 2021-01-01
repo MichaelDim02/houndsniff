@@ -5,7 +5,7 @@
 #include "select.h"
 
 /* this is basically where the program
-   indexes through the database and pick
+   indexes through the database and picks
    out the rows with desired values */
 
 int counter = 0;
