@@ -37,7 +37,7 @@ banner()
 	printf(" /_)_) /_)_)\n\n");
 	/*https://www.asciiart.eu/animals/dogs*/
 	
-	printf("Houndsniff - Hash Identification Program - Version %s\nBy MCD Sep 2020\n\n",version);
+	printf("Houndsniff - Hash Identification Program - Version %s\nBy Michael Constantine Dimopoulos Sep 2020\n\n",version);
 }
 
 /* This function prints out the supported hashes
