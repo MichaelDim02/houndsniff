@@ -11,7 +11,7 @@
  * by Michael Constantine Dimopoulos (Kerberos) 
  */
 
-char version[4] = "1.5";
+char version[4] = "1.6";
  
 /* has uppercase letters */
 bool
