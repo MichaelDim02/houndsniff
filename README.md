@@ -1,9 +1,10 @@
 # houndsniff
 Houndsniff is a minimal hash identification and recognition tool written in C that uses a database to compare a hash's features to characteristics of other common hashing algorithm results. Email hashes that I missed at houndsniff@protonmail.com
 
-By Michael Constantine Dimopoulos
+By Michael Constantine Dimopoulos, et al
+with significant contributions by (Christopher Wellons)[https://github.com/skeeto] and revisions & suggestions by (Martin K.)[https://github.com/kurahaupo] as well as tuu and fizzie on ##c on Freenode.
 
-Current version: 1.5
+Current version: 1.6
 
 ![Screenshot](https://1.bp.blogspot.com/-NoLj1A28LTk/X25thDwJ2hI/AAAAAAAA8HU/l219Zr9vgCEZlY-GnsDK2VCbBQk6Um_QACLcBGAsYHQ/s16000/hound.png)
 
