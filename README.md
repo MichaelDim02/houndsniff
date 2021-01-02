@@ -1,5 +1,5 @@
 # houndsniff
-Houndsniff is a minimal hash identification and recognition tool written in C that uses an SQLite database to compare a hash's features to characteristics of other common hashing algorithm results. Email hashes that I missed at houndsniff@protonmail.com
+Houndsniff is a minimal hash identification and recognition tool written in C that uses a database to compare a hash's features to characteristics of other common hashing algorithm results. Email hashes that I missed at houndsniff@protonmail.com
 
 By Michael Constantine Dimopoulos
 
@@ -21,7 +21,7 @@ make
 
 or manually
 ```
-gcc main.c select.c -lsqlite3 -std=c89 -o hound
+gcc main.c select.c -std=c89 -o hound
 ```
 
 
