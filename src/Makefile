@@ -1,5 +1,5 @@
 output: main.o select.o
-	gcc main.o select.o -o hound -lsqlite3
+	gcc main.o select.o -o hound
 
 main.o: main.c
 	gcc -c main.c

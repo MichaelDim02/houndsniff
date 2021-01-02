@@ -40,29 +40,6 @@ banner()
 	printf("Houndsniff - Hash Identification Program - Version %s\nBy Michael Constantine Dimopoulos Sep 2020\n\n",version);
 }
 
-/* This function prints out the supported hashes
- * The reason I used a text file is because
- * 1. it's easier 
- * 2. it's simpler and
- * 3. I can add comments etc.
- */
-
-void
-list_(void)
-{
-	printf("\nHoundsniff supports:\n\n");
-	int c;
-	FILE *file;
-	file = fopen("list.txt", "r");
-
-	if (file) {
-		while ((c = getc(file)) != EOF)
-			putchar(c);
-    		fclose(file);
-	}
-
-}
-
 /* This is the first test;
  * here we identify the hash
  * based on *definite* characteristics
@@ -143,7 +120,7 @@ main(int argc, char* argv[])
 		if(strcmp(argv[1],"-h")==0 || strcmp(argv[1],"--help")==0){
 			help();
 		} else if(strcmp(argv[1], "-l")==0) {
-			list_();
+			list();
 		} else {
 			int len = strlen(argv[1]);
 			printf("Hash: %s\n", argv[1]);
