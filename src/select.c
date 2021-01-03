@@ -3,16 +3,18 @@
 #include <stdlib.h>
 #include "select.h"
 
-/* this is basically where the program
-   indexes through the database and picks
-   out the rows with desired values */
+/* houndsniff
+ *
+ * this is basically where the program
+ * indexes through the database and picks
+ * out the rows with desired values
+ */
 
 void list(void);
 int matchcmp(const void *, const void *);
-int sel(int length, const char *charset);
+void sel(int length, const char *charset);
 
 /* Notes:
-   0. The rows are split into chunks of 3 for readability
    1. The popularity integer determines how the results are sorted
    2. It is determined by the number web search results compared
       to other hashing algorithms with the same characteristics.
@@ -24,7 +26,7 @@ int sel(int length, const char *charset);
    d = string begins with '$0$'
    e = string includes uppercase letters */
 
-#define NHASHES (int)(sizeof(hashes) / sizeof(hashes[0]))
+#define NHASHES (int)(sizeof(hashes) / sizeof(hashes[0])) /* array size */
 static const struct {
     char *name;
     short length;
@@ -84,7 +86,7 @@ static const struct {
 	{"MD5 HMAC",                32,  'a', 12},
 };
 
-int
+void
 sel(int length, const char *charset)
 {
 	int i;
@@ -103,9 +105,9 @@ sel(int length, const char *charset)
 	for (i = 0; i < nmatch; i++) {
 		printf("[%d] %s\n", i + 1, hashes[matches[i]].name);
 	}
-	return 0;
 }
 
+/* comparison function for qsort() */
 int
 matchcmp(const void *p0, const void *p1)
 {
@@ -122,4 +124,15 @@ list(void)
 	for (i = 0; i < NHASHES; i++) {
 		puts(hashes[i].name);
 	}
+
+	/* hashes from definite(); */
+        printf( "Wordpress hash \n"
+	"MD5 crypt(3)   \n"
+	"SHA256 crypt(3)\n"
+	"SHA512 crypt(3)\n"
+	"Base64         \n"
+	"ARP1           \n"
+	"phpBB          \n"
+	"SHA1 Django    \n"
+	"MD5 Joomla (pass:salt)\n");
 }
