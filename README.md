@@ -7,6 +7,8 @@ with significant contributions by [Christopher Wellons](https://github.com/skeet
 
 Current version: 1.6
 
+Also, check out [this](https://github.com/sal55/langs/tree/master/hash)!
+
 ![Screenshot](https://1.bp.blogspot.com/-NoLj1A28LTk/X25thDwJ2hI/AAAAAAAA8HU/l219Zr9vgCEZlY-GnsDK2VCbBQk6Um_QACLcBGAsYHQ/s16000/hound.png)
 
 Clone & Install
