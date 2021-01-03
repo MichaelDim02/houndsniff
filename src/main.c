@@ -8,7 +8,7 @@
 /*
  * Houndsniff
  * hash identification program in C
- * by Michael Constantine Dimopoulos (Kerberos) 
+ * by Michael Constantine Dimopoulos et al
  */
 
 char version[4] = "1.6";
@@ -31,13 +31,14 @@ hasUpper(char ch[])
 void
 banner()
 { 
-	printf("          __\n");
-	printf("(\\,------'()'--o  Sniff..\n");
-	printf(" l_ ) _    /-''    Sniff...\n");
-	printf(" /_)_) /_)_)\n\n");
+	printf(	"          __			\n"
+		"(\\,------'()'--o  Sniff..	\n"
+		" l_ ) _    /-''    Sniff...	\n"
+		" /_)_) /_)_)			\n\n");
 	/*https://www.asciiart.eu/animals/dogs*/
 	
-	printf("Houndsniff - Hash Identification Program - Version %s\nBy Michael Constantine Dimopoulos Sep 2020\n\n",version);
+	printf( "Houndsniff - Hash Identification Program - Version %s\n"
+		"By Michael Constantine Dimopoulos et al, 2020\n\n",version);
 }
 
 /* This is the first test;
@@ -96,19 +97,23 @@ charset(char string[])
 void
 help(void)
 {
-	printf("Houndsniff is  a hash recognition  program\n");
-	printf("It works  by  extracting some  info  about\n");
-	printf("the  hash  and comparing it to  info about\n");
-	printf("other  hashes in an SQLite  database. Then,\n");
-	printf("it prints the matches sorted by popularity.\n");
-	printf("Their  popularity  is  determined  by  web\n");
-	printf("search  result  numbers  in  comparison to\n");
-	printf("to other  hashes  with  the  same features\n\n");
-	printf("If your hash includes a dollar sign ($), make\nsure you place it in between quotes.\n\n");
-	printf("Send missing hashes at houndsniff@protonmail.com\n\n");
-	printf("-h to display this panel and exit\n");
-	printf("-l to list supported hashing algorithms\n");
-	printf("\nUsage: hound [HASH]\n");
+	printf( "Houndsniff is  a hash recognition  program	\n"
+		"It works  by  extracting some  info  about	\n"
+		"the  hash  and comparing it to  info about	\n"
+		"other  hashes in an SQLite  database. Then,	\n"
+		"it prints the matches sorted by popularity.	\n"
+		"Their  popularity  is  determined  by  web	\n"
+		"search  result  numbers  in  comparison to	\n"
+		"to other  hashes  with  the  same features	\n\n"
+		"If your hash includes a dollar sign ($), make	\n"
+		"sure you place it in between quotes.		\n\n"
+		"By Michael Constantine Dimopoulos et al	\n"
+		"Contributors: 	Christopher Wellons, Martin K.	\n"
+		"		tuu & fizzie on ##c@freenode	\n\n"
+		"Send missing hashes: houndsniff@protonmail.com	\n\n"
+		"-h to display this panel and exit	\n"
+		"-l to list supported hashing algorithms\n"
+		"\nUsage: hound [HASH]\n");
 }
 
 int
