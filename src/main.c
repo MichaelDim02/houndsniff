@@ -71,7 +71,7 @@ definite(char string[], int length)
 	} else if (string[0]=='s' && string[1]=='h' && string[2]=='a' && string[3]=='1' && string[4]=='$'){
 		printf("[+] Definite identification: SHA1 Django\n");
 		exit(0);
-	} else if (strlen(string)>31 && string[32]==':' && length==65) {
+	} else if (length==65 && string[32]==':') {
 		printf("[+] Definite identification: MD5 Joomla (pass:salt)\n");
 		exit(0);
 	}
