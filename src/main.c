@@ -97,10 +97,10 @@ charset(char string[])
 void
 help(void)
 {
-	printf( "Houndsniff is  a hash recognition  program	\n"
+	printf( "Houndsniff is  a hash recognition  program.	\n"
 		"It works  by  extracting some  info  about	\n"
 		"the  hash  and comparing it to  info about	\n"
-		"other  hashes in an SQLite  database. Then,	\n"
+		"other  hashes in a local  database. Then,	\n"
 		"it prints the matches sorted by popularity.	\n"
 		"Their  popularity  is  determined  by  web	\n"
 		"search  result  numbers  in  comparison to	\n"
