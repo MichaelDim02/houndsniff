@@ -20,7 +20,7 @@ git clone https://github.com/michaeldim02/houndsniff.git && cd houndsniff
 Compile (c89)
 ----
 ```
-make
+sudo make install
 ```
 
 or manually
