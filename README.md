@@ -14,7 +14,7 @@ Also, check out [this](https://github.com/sal55/langs/tree/master/hash)!
 Clone & Install
 ----
 ```
-git clone https://github.com/michaeldim02/houndsniff.git && cd houndsniff
+git clone https://github.com/michaeldim02/houndsniff.git && cd houndsniff/src
 ```
 
 Compile (c89)
