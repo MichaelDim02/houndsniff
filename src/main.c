@@ -11,7 +11,7 @@
  * by Michael Constantine Dimopoulos et al
  */
 
-char version[4] = "1.6";
+char version[4] = "1.7";
  
 /* has uppercase letters */
 bool
@@ -48,34 +48,24 @@ banner()
 void
 definite(char string[], int length)
 {
-	if (string[0]=='$' && string[1]=='P' && string[2]=='$'){
+	if (string[0]=='$' && string[1]=='P' && string[2]=='$')
 		printf("[+] Definite identification: Wordpress hash\n");
-		exit(0);
-	} else if (string[0]=='$' && string[1]=='1' && string[2]=='$'){
-		printf("[+] Definite identification: MD5 crypt(3)\n");
-		exit(0);
-	} else if (string[0]=='$' && string[1]=='5' && string[2]=='$'){
-		printf("[+] Definite identification: SHA256 crypt(3)\n");
-		exit(0);
-	} else if (string[0]=='$' && string[1]=='6' && string[2]=='$'){
-		printf("[+] Definite identification: SHA512 crypt(3)\n");
-		exit(0);
-	} else if (string[length-1]=='=') {
-		printf("[+] Definite identification: Base64\n");
-		exit(0);
-	} else if (string[0]=='$' && string[1]=='a' && string[2]=='p' && string[3]=='r' && string[4]=='1' && string[5]=='$'){
-		printf("[+] Definite identification: APR1\n");
-		exit(0);
-	} else if (string[0]=='$' && string[1]=='H' && string[2]=='$') {
-		printf("[+] Definite identification: phpBB\n");
-		exit(0);
-	} else if (string[0]=='s' && string[1]=='h' && string[2]=='a' && string[3]=='1' && string[4]=='$'){
-		printf("[+] Definite identification: SHA1 Django\n");
-		exit(0);
-	} else if (length==65 && string[32]==':') {
-		printf("[+] Definite identification: MD5 Joomla (pass:salt)\n");
-		exit(0);
-	}
+	 else if (string[0]=='$' && string[1]=='1' && string[2]=='$')
+	       printf("[+] Definite identification: MD5 crypt(3)\n");
+	 else if (string[0]=='$' && string[1]=='5' && string[2]=='$')
+	       printf("[+] Definite identification: SHA256 crypt(3)\n");
+	 else if (string[0]=='$' && string[1]=='6' && string[2]=='$')
+	       printf("[+] Definite identification: SHA512 crypt(3)\n");
+	 else if (string[length-1]=='=') 
+	       printf("[+] Definite identification: Base64 or Base32\n");
+	 else if (string[0]=='$' && string[1]=='a' && string[2]=='p' && string[3]=='r' && string[4]=='1' && string[5]=='$')
+	       printf("[+] Definite identification: APR1\n");
+	 else if (string[0]=='$' && string[1]=='H' && string[2]=='$') 
+	       printf("[+] Definite identification: phpBB\n");
+	 else if (string[0]=='s' && string[1]=='h' && string[2]=='a' && string[3]=='1' && string[4]=='$')
+	       printf("[+] Definite identification: SHA1 Django\n");
+	 else if (length==65 && string[32]==':')
+	       printf("[+] Definite identification: MD5 Joomla (pass:salt)\n");
 }
 
 /* this function determines charset (used later for identification)*/
