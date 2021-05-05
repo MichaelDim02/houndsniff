@@ -11,10 +11,10 @@
  * by Michael Constantine Dimopoulos et al
  */
 
-char version[4] = "1.7";
+#define version "1.7"
  
 /* has uppercase letters */
-bool
+static int
 hasUpper(char ch[])
 {
 	int len = strlen(ch);
@@ -22,10 +22,10 @@ hasUpper(char ch[])
 	
 	for (i=0; i<len; i++) {
 		if (isupper(ch[i])) {
-			return true;
+			return 1;
 		}
 	} 
-	return false;
+	return 0;
 }
 
 void
@@ -78,35 +78,39 @@ charset(char string[])
 		return "c";
 	else if (string[0]=='0' && string[1]=='x' && string[2]=='0')
 		return "d";
-	else if (hasUpper(string)==true)
+	else if (hasUpper(string)==1)
 		return "e";
 	else
 		return "a";
 }
 
-void
+static void
 help(void)
 {
-	printf( "Houndsniff is  a hash recognition  program.	\n"
-		"It works  by  extracting some  info  about	\n"
-		"the  hash  and comparing it to  info about	\n"
-		"other  hashes in a local  database. Then,	\n"
+	printf( "Houndsniff is  a hash recognition program.	\n"
+		"It works by extracting some info about	\n"
+		"the hash and comparing it to info about	\n"
+		"other hashes in a local database. Then,	\n"
 		"it prints the matches sorted by popularity.	\n"
-		"Their  popularity  is  determined  by  web	\n"
-		"search  result  numbers  in  comparison to	\n"
-		"to other  hashes  with  the  same features	\n\n"
-		"If your hash includes a dollar sign ($), make	\n"
-		"sure you place it in between quotes.		\n\n"
+		"Their popularity is determined by web	\n"
+		"search result numbers in comparison to	\n"
+		"to other hashes with the same features	\n\n"
+
+		"If your hash includes a dollar sign ($)\n"
+		"make sure you place it in between quotes.		\n\n"
+
 		"By Michael Constantine Dimopoulos et al	\n"
-		"Contributors: 	Christopher Wellons, Martin K.	\n"
+		"Contributors:  Christopher Wellons, Martin K.	\n"
 		"		tuu & fizzie on ##c@freenode	\n\n"
+
 		"Send missing hashes: houndsniff@protonmail.com	\n\n"
+
 		"-h to display this panel and exit	\n"
 		"-l to list supported hashing algorithms\n"
 		"\nUsage: hound [HASH]\n");
 }
 
-int
+void
 main(int argc, char* argv[])
 {
 	banner();
@@ -128,5 +132,5 @@ main(int argc, char* argv[])
 	} else {
 		printf("Usage: %s [HASH] or -h for help\n", argv[0]);
 	}
-	return 0;
+	exit(0);
 }
