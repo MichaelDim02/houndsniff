@@ -1,5 +1,5 @@
 # Houndsniff https://mcdim.xyz/projects/hs.html
-# Check LICENSE.txt for legal information
+# Check the LICENSE file for legal information
 
 CC=gcc
 FILES=main.c select.c
