@@ -3,7 +3,7 @@
 
 CC=gcc
 FILES=main.c select.c
-BIN=hound
+BIN=houndsniff
 
 all: main.c select.c
 	$(CC) $(FILES) -o $(BIN)
