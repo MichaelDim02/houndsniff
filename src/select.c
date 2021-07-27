@@ -4,6 +4,7 @@
 #include "select.h"
 
 /* houndsniff
+ * hash identification program
  *
  * this is basically where the program
  * indexes through the database and picks

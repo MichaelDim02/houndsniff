@@ -11,7 +11,7 @@
  * by Michael Constantine Dimopoulos et al
  */
 
-#define version "1.7"
+#define VERSION "1.7"
  
 /* has uppercase letters */
 static int
@@ -38,7 +38,7 @@ banner()
 	/*https://www.asciiart.eu/animals/dogs*/
 	
 	printf( "Houndsniff - Hash Identification Program - Version %s\n"
-		"By Michael Constantine Dimopoulos et al, 2020\n\n",version);
+		"By Michael Constantine Dimopoulos et al, 2020\n\n",VERSION);
 }
 
 /* This is the first test;

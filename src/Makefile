@@ -1,5 +1,5 @@
 # Houndsniff https://mcdim.xyz/projects/hs.html
-# Check the LICENSE file for legal information
+# License: GNU GPL v3.0
 
 CC=gcc
 FILES=main.c select.c
@@ -16,5 +16,3 @@ install: main.c select.c houndsniff.1
 
 uninstall: /usr/bin/$(BIN) /usr/share/man/man1/houndsniff.1
 	rm /usr/bin/$(BIN) /usr/share/man/man1/houndsniff.1
-
-

@@ -1,8 +1,12 @@
 /*
- * houndsniff by Michael C. Dim. (Kerberos)
- *        hash identification program
+ *             houndsniff
+ *    hash identification program.
  *
- *        select.h
+ *  by Michael Constantine Dimopoulos
+ *  https://mcdim.xyz  <mk@mcdim.xyz>
+ *
+ *  select.h
+ *
  */
 
 #ifndef SELECT_H
