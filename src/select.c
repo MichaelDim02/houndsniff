@@ -126,7 +126,7 @@ list(void)
 		puts(hashes[i].name);
 	}
 
-	/* hashes from definite(); */
+	/* hashes from main.c:definite(); */
         printf( "Wordpress hash \n"
 	"MD5 crypt(3)   \n"
 	"SHA256 crypt(3)\n"
