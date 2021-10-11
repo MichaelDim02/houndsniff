@@ -7,7 +7,7 @@ By Michael Constantine Dimopoulos, et al
 
 with significant contributions by [Christopher Wellons](https://github.com/skeeto) and revisions & suggestions by [Martin K.](https://github.com/kurahaupo) as well as tuu and fizzie on ##c on Freenode.
 
-Current version: 1.6
+Current version: 1.8
 
 Also, check out [this](https://github.com/sal55/langs/tree/master/hash)!
 
