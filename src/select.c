@@ -11,6 +11,9 @@
  * out the rows with desired values
  */
 
+#define RED "\x1b[31m"
+#define RESET "\x1b[0m"
+
 void list(void);
 int matchcmp(const void *, const void *);
 void sel(int length, const char *charset);
@@ -104,7 +107,7 @@ sel(int length, const char *charset)
 
 	printf("Possible results:\n\n");
 	for (i = 0; i < nmatch; i++) {
-		printf("[%d] %s\n", i + 1, hashes[matches[i]].name);
+		printf("[" RED "%d" RESET "] %s\n", i + 1, hashes[matches[i]].name);
 	}
 }
 

@@ -3,6 +3,8 @@
 #include <stdbool.h>
 #include <string.h>
 #include <ctype.h>
+#include <readline/history.h>
+#include <readline/readline.h>
 #include "select.h"
 
 /*
@@ -12,9 +14,8 @@
  * by Michael Constantine Dimopoulos et al
  */
 
-#define VERSION "1.8"
+#define VERSION "1.9"
  
-/* has uppercase letters */
 static int
 hasUpper(char ch[])
 {
@@ -22,9 +23,7 @@ hasUpper(char ch[])
 	int i;
 	
 	for (i=0; i<len; i++) {
-		if (isupper(ch[i])) {
-			return 1;
-		}
+		if (isupper(ch[i])) return 1;
 	} 
 	return 0;
 }
@@ -50,7 +49,7 @@ banner()
 void
 definite(char string[], int length)
 {
-	char *def = "[+] Definite identification";
+	char *def = "[" RED "+" RESET "] Definite identification";
 
 	if (string[0]=='$' && string[1]=='P' && string[2]=='$')
 		printf("%s Wordpress hash\n", def);
@@ -91,7 +90,7 @@ charset(char string[])
 }
 
 static void
-help(void)
+help(char *exename)
 {
 	printf( "Houndsniff is  a hash recognition tool.\n"
 		"It works by extracting some info about	\n"
@@ -110,9 +109,24 @@ help(void)
 		"Christopher Wellons, Martin K.\n"
 		"tuu & fizzie on ##c@freenode\n\n"
 
-		"-h to display this panel and exit\n"
 		"-l to list supported hashing algorithms\n"
-		"\nUsage: hound [HASH]\n");
+		"-s for an interactive shell\n"
+		"-h to display this panel and exit\n"
+		"\nUsage: Usage: %s [HASH] [-h] [-l] [-s]\n",
+		exename);
+}
+
+void
+driver(char *hash)
+{
+	int len = strlen(hash);
+	const char* chars = charset(hash);
+	printf("Hash: " RED "%s" RESET "\n", hash);
+	printf("Length: " RED "%d" RESET "\n",len);
+	printf("Charset: " RED "%s" RESET "\n\n", chars);
+	sel(len, chars);
+	definite(hash, len);
+	printf("\n");
 }
 
 void
@@ -120,22 +134,31 @@ main(int argc, char* argv[])
 {
 	banner();
 
-	if(argc>1){
-		if(strcmp(argv[1],"-h")==0 || strcmp(argv[1],"--help")==0){
-			help();
-		} else if(strcmp(argv[1], "-l")==0) {
-			list();
-		} else {
-			int len = strlen(argv[1]);
-			const char* chars = charset(argv[1]);
-			printf("Hash: %s\n", argv[1]);
-			printf("Length: %d\n",len);
-			printf("Charset: %s\n\n", chars);
-			sel(len, chars);
-			definite(argv[1], len);
+	if(argc==1) {
+		printf("Usage: %s [HASH] [-h] [-l] [-s]\n", argv[0]);
+		exit(EXIT_FAILURE);
+	}
+
+	if(strcmp(argv[1],"-h")==0 || strcmp(argv[1],"--help")==0){
+		help(argv[0]);
+	} else if(strcmp(argv[1], "-l")==0) {
+		list();
+	} else if(strcmp(argv[1], "-s")==0) {
+		using_history();
+		while(1) {
+			char *hash;
+			hash = readline("houndsniff > ");
+			rl_bind_key('\t', rl_complete);
+			
+			if (!hash) break;
+			
+			add_history(hash);
+			driver(hash);
+			printf("--------------------------\n");
+			free(hash);
 		}
 	} else {
-		printf("Usage: %s [HASH] or -h for help\n", argv[0]);
+		driver(argv[1]);
 	}
-	exit(0);
+	exit(EXIT_SUCCESS);
 }
