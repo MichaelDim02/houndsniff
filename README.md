@@ -13,23 +13,28 @@ Also, check out [this](https://github.com/sal55/langs/tree/master/hash)!
 
 ![Screenshot](https://1.bp.blogspot.com/-NoLj1A28LTk/X25thDwJ2hI/AAAAAAAA8HU/l219Zr9vgCEZlY-GnsDK2VCbBQk6Um_QACLcBGAsYHQ/s16000/hound.png)
 
-Clone & Install
+Clone
 ----
 ```
 git clone https://github.com/michaeldim02/houndsniff.git && cd houndsniff/src
 ```
 
-Compile (c89)
+Build & install
 ----
 ```
 sudo make install
 ```
 
-or manually
+Usage
+---
 ```
-gcc main.c select.c -std=c89 -o hound
+houndsniff [HASH]
 ```
-
+or, alternatively you can use the interactive shell:
+```
+houndsniff -s
+```
+You can exit with ^C.
 
 Thanks
 ----
