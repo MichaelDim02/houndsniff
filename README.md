@@ -11,7 +11,7 @@ Current version: 1.9
 
 Also, check out [this](https://github.com/sal55/langs/tree/master/hash)!
 
-![Screenshot](https://1.bp.blogspot.com/-NoLj1A28LTk/X25thDwJ2hI/AAAAAAAA8HU/l219Zr9vgCEZlY-GnsDK2VCbBQk6Um_QACLcBGAsYHQ/s16000/hound.png)
+![Screenshot](https://1.bp.blogspot.com/-AJHOYoGZtpo/YWbtxCa5mgI/AAAAAAABDqI/2bhmlbBdnpUTj5PkkXAP9vnmUob8sDBMwCLcBGAsYHQ/s16000/houndsniff.png)
 
 Clone
 ----
