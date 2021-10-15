@@ -1,3 +1,14 @@
+/*
+ * Houndsniff - version 1.9
+ *
+ * by Michael Constantine
+ * Dimopoulos et al
+ * https://mcdim.xyz
+ * <mk@mcdim.xyz>
+ * GNU GPLv3
+ *
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -7,12 +18,6 @@
 #include <readline/readline.h>
 #include "select.h"
 
-/*
- * Houndsniff
- * hash identification
- *
- * by Michael Constantine Dimopoulos et al
- */
 
 #define VERSION "1.9"
  
@@ -42,6 +47,20 @@ banner()
 		"\n",VERSION);
 }
 
+static int
+starts_with(const char *a, const char *b)
+{
+	if(strncmp(a, b, strlen(b)) == 0) return 1;
+		return 0;
+}
+
+static void
+dprint(char *name)
+{
+	printf("[" RED "+" RESET "] Definite identification %s\n", name);
+}
+
+
 /* This is the first test;
  * here we identify the hash
  * based on *definite* characteristics
@@ -49,28 +68,25 @@ banner()
 void
 definite(char string[], int length)
 {
-	char *def = "[" RED "+" RESET "] Definite identification";
 
-	if (string[0]=='$' && string[1]=='P' && string[2]=='$')
-		printf("%s Wordpress hash\n", def);
-	else if (string[0]=='$' && string[1]=='1' && string[2]=='$')
-		printf("%s MD5 crypt(3)\n", def);
-	else if (string[0]=='$' && string[1]=='5' && string[2]=='$')
-		printf("%s SHA256 crypt(3)\n", def);
-	else if (string[0]=='$' && string[1]=='6' && string[2]=='$')
-		printf("%s SHA512 crypt(3)\n", def);
+	if (starts_with(string, "$P"))
+		dprint("Wordpress hash");
+	else if (starts_with(string, "$1$"))
+		dprint("MD5 crypt(3)");
+	else if (starts_with(string, "$5$"))
+		dprint("SHA256 crypt(3)");
+	else if (starts_with(string, "$6$"))
+		dprint("SHA512 crypt(3)");
 	else if (string[length-1]=='=') 
-		printf("%s Base64 or Base32\n", def);
-	else if (string[0]=='$' && string[1]=='a' && string[2]=='p'
-		&& string[3]=='r' && string[4]=='1' && string[5]=='$')
-		printf("%s APR1\n", def);
-	else if (string[0]=='$' && string[1]=='H' && string[2]=='$') 
-		printf("%s phpBB\n", def);
-	else if (string[0]=='s' && string[1]=='h' && string[2]=='a' &&
-		string[3]=='1' && string[4]=='$')
-		printf("%s SHA1 Django\n", def);
+		dprint("Base64 or Base32");
+	else if (starts_with(string, "$apr1$"))
+		dprint("APR1");
+	else if (starts_with(string, "$H$"))
+		dprint("phpBB");
+	else if (starts_with(string, "sha1$"))
+		dprint("SHA1 Django");
 	else if (length==65 && string[32]==':')
-		printf("%s MD5 Joomla (pass:salt)\n", def);
+		dprint("MD5 Joomla (pass:salt)");
 }
 
 /* this function determines charset*/
