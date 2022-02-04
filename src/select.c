@@ -157,5 +157,6 @@ list(void)
 	"ARP1           \n"
 	"phpBB          \n"
 	"SHA1 Django    \n"
+	"PHP password_hash\n"
 	"MD5 Joomla (pass:salt)\n");
 }
