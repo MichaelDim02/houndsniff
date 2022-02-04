@@ -1,12 +1,12 @@
 # Houndsniff https://mcdim.xyz/projects/hs.html
-# License: GNU GPL v3.0
+# License: GNU GPL v3.0+
 
 CC=gcc
 FILES=main.c select.c
 BIN=houndsniff
 
 all: main.c select.c
-	$(CC) $(FILES) -o $(BIN)
+	$(CC) $(FILES) -o $(BIN) -lreadline
 
 install: main.c select.c $(BIN).1
 	$(CC) $(FILES) -o $(BIN) -lreadline

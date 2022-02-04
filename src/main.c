@@ -1,11 +1,8 @@
 /*
- * Houndsniff - version 1.9
+ * Houndsniff - version 2.0
  *
- * by Michael Constantine
- * Dimopoulos et al
- * https://mcdim.xyz
- * <mk@mcdim.xyz>
- * GNU GPLv3
+ * by Michael Constantine Dimopoulos et al
+ * https://mcdim.xyz <mk@mcdim.xyz> GNU GPLv3
  *
  */
 
@@ -18,8 +15,7 @@
 #include <readline/readline.h>
 #include "select.h"
 
-
-#define VERSION "1.9"
+#define VERSION "2.0"
  
 static int
 hasUpper(char ch[])
@@ -150,16 +146,16 @@ main(int argc, char* argv[])
 {
 	banner();
 
-	if(argc==1) {
+	if (argc==1) {
 		printf("Usage: %s [HASH] [-h] [-l] [-s]\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 
-	if(strcmp(argv[1],"-h")==0 || strcmp(argv[1],"--help")==0){
+	if (strcmp(argv[1],"-h")==0 || strcmp(argv[1],"--help")==0){
 		help(argv[0]);
-	} else if(strcmp(argv[1], "-l")==0) {
+	} else if (strcmp(argv[1], "-l")==0) {
 		list();
-	} else if(strcmp(argv[1], "-s")==0) {
+	} else if (strcmp(argv[1], "-s")==0) {
 		using_history();
 		while(1) {
 			char *hash;
