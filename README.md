@@ -9,8 +9,6 @@ with significant contributions by [Christopher Wellons](https://github.com/skeet
 
 Current version: 2.0
 
-Also, check out [this](https://github.com/sal55/langs/tree/master/hash)!
-
 ![Screenshot](https://blogger.googleusercontent.com/img/a/AVvXsEh7UuJAMRdL4MOA82DH7C2g78X1t_kvsQuKcG-Cww6SqbZ68f_G8TZ3ibOJi7s09bMopa34NkzCbWILgWo0budEUbSlsTtK6GUDogOkZvtZQ0lqhiz2GBBkQkzR7PRDosDHm5RMbcQ6gHOQH3DxL-hJy2ncIlyxIb2gU1fcs5aLaIAM83ezm2NtnrPa=s16000)
 
 Clone
