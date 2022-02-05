@@ -7,20 +7,17 @@ By Michael Constantine Dimopoulos, et al
 
 with significant contributions by [Christopher Wellons](https://github.com/skeeto) and revisions & suggestions by [Martin K.](https://github.com/kurahaupo) as well as tuu and fizzie on ##c on Freenode.
 
-Current version: 2.0
+Current version: 2.0.1
 
 ![Screenshot](https://blogger.googleusercontent.com/img/a/AVvXsEh7UuJAMRdL4MOA82DH7C2g78X1t_kvsQuKcG-Cww6SqbZ68f_G8TZ3ibOJi7s09bMopa34NkzCbWILgWo0budEUbSlsTtK6GUDogOkZvtZQ0lqhiz2GBBkQkzR7PRDosDHm5RMbcQ6gHOQH3DxL-hJy2ncIlyxIb2gU1fcs5aLaIAM83ezm2NtnrPa=s16000)
 
-Clone
+Clone, build & install
 ----
+Dependencies:
++ readline - `sudo apt install libreadline-dev` for Debian & `sudo pacman -S readline` for Arch
 ```
-git clone https://github.com/michaeldim02/houndsniff.git && cd houndsniff/src
-```
-
-Build & install
-----
-```
-sudo make install
+$ git clone https://github.com/michaeldim02/houndsniff.git && cd houndsniff/src
+$ sudo make install
 ```
 
 Usage

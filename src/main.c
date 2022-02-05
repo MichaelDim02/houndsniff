@@ -1,5 +1,5 @@
 /*
- * Houndsniff - version 2.0
+ * Houndsniff - version 2.0.1
  *
  * by Michael Constantine Dimopoulos et al
  * https://mcdim.xyz <mk@mcdim.xyz> GNU GPLv3
@@ -15,7 +15,10 @@
 #include <readline/readline.h>
 #include "select.h"
 
-#define VERSION "2.0"
+#define VERSION "2.0.1"
+
+#define RED "\x1b[31m"
+#define RESET "\x1b[0m"
  
 static int
 hasUpper(char ch[])
@@ -53,7 +56,8 @@ starts_with(const char *a, const char *b)
 static void
 dprint(char *name)
 {
-	printf("[" RED "+" RESET "] Definite identification: %s\n", name);
+	printf("[" RED "+" RESET "] Definite identification: "
+	       RED "%s" RESET "\n", name);
 }
 
 

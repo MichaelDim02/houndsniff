@@ -1,5 +1,5 @@
 /*
- * Houndsniff - version 1.9
+ * Houndsniff - version 2.0.1
  *
  * by Michael Constantine
  * Dimopoulos et al
