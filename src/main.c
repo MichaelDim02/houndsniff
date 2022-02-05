@@ -53,7 +53,7 @@ starts_with(const char *a, const char *b)
 static void
 dprint(char *name)
 {
-	printf("[" RED "+" RESET "] Definite identification %s\n", name);
+	printf("[" RED "+" RESET "] Definite identification: %s\n", name);
 }
 
 
@@ -83,6 +83,8 @@ definite(char string[], int length)
 		dprint("SHA1 Django");
 	else if (length==65 && string[32]==':')
 		dprint("MD5 Joomla (pass:salt)");
+	else if (starts_with(string, "$2y$"))
+		dprint("PHP password_hash");
 }
 
 /* this function determines charset*/
