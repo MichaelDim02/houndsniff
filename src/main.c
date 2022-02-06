@@ -31,6 +31,11 @@ hasUpper(char ch[])
 	} 
 	return 0;
 }
+static char* 
+lower(char* y) {
+  for(char *i=y; *i; i++) *i=tolower(*i);
+  return y;
+}
 
 void
 banner()
@@ -138,7 +143,7 @@ void
 driver(char *hash)
 {
 	int len = strlen(hash);
-	const char* chars = charset(hash);
+	const char* chars = charset(toLower(hash));
 	printf("Hash: " RED "%s" RESET "\n", hash);
 	printf("Length: " RED "%d" RESET "\n",len);
 	printf("Charset: " RED "%s" RESET "\n\n", chars);
