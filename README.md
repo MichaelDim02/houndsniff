@@ -34,3 +34,8 @@ You can exit with ^C.
 Thanks
 ----
 Thanks a lot to tuu and fizzie, as well as kurahaupo on ##c @ freenode for their revisions and suggestions! (even though I've yet to implement everything). I truly appreciate the help.
+
+## Donate
+[![paypal](https://mcdim.xyz/media/button_paypal2.png)](https://www.paypal.com/donate/?hosted_button_id=HZXXLD586P5CW)
+
+More donation options on the website: <a href="https://mcdim.xyz/"/>mcdim.xyz</a>
