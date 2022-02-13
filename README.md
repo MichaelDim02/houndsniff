@@ -31,9 +31,11 @@ houndsniff -i
 ```
 You can exit with ^C.
 
-You can also use scripting mode, which allows houndsniff to get hashes from stdin and print to stdout without much eye-candy
+You can also use scripting mode, which allows houndsniff to get hashes from stdin and print to stdout without much eye-candy:
 
+```
 echo "$hash" | houndsnif -s
+```
 
 Thanks
 ----
