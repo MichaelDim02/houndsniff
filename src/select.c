@@ -19,7 +19,25 @@
 
 void list(void);
 int matchcmp(const void *, const void *);
-void sel(int length, const char *charset);
+void sel(int length, const char *charset, int clean_out);
+char *replace(char *str);
+
+char *
+replace(char *str)
+{
+	int len = strlen(str);
+	char *str2 = malloc (sizeof (char) * len);
+	int i;
+
+	for(i = 0; i < len; i++) {	
+		if(str[i] == ' ')
+			str2[i] = '_';
+		else
+			str2[i] = str[i];
+	}
+
+	return str2;
+}
 
 /* Notes:
    1. The popularity integer determines how the results are sorted
@@ -68,7 +86,7 @@ static const struct {
 	{"HAVAL160,4",              40,  'a', 13.83},
 	{"Tiger160,3",              40,  'a',  8.99},
 	{"Tiger160,4",              40,  'a',  8.81},
-	{"RIPEMD160 ",              40,  'a',  8.18},
+	{"RIPEMD160",               40,  'a',  8.18},
 	{"HAVAL160,3",              40,  'a',  8.08},
 	{"HAVAL160,5",              40,  'a',  6.21},
 
@@ -108,7 +126,7 @@ static const struct {
 };
 
 void
-sel(int length, const char *charset)
+sel(int length, const char *charset, int clean_out)
 {
 	int i;
 	int nmatch = 0;
@@ -122,11 +140,17 @@ sel(int length, const char *charset)
 
 	qsort(matches, nmatch, sizeof(*matches), matchcmp);
 
-	printf("Possible results:\n\n");
+	if (!clean_out) printf("Possible results:\n\n");
+
 	for (i = 0; i < nmatch; i++) {
-		printf("[" RED "%d" RESET "] %s - " RED "%.2f%" RESET "\n",
-		       i + 1, hashes[matches[i]].name,
-		       hashes[matches[i]].likelihood);
+		if (!clean_out) {
+			printf("[" RED "%d" RESET "] %s - " RED "%.2f%" RESET "\n",
+		       	       i + 1, hashes[matches[i]].name,
+			hashes[matches[i]].likelihood);
+		} else {
+			printf("%s %.2f\n", replace(hashes[matches[i]].name),
+			       hashes[matches[i]].likelihood);
+		}
 	}
 }
 

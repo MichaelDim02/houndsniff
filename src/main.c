@@ -1,5 +1,5 @@
 /*
- * Houndsniff - version 2.0.1
+ * Houndsniff - version 2.1
  *
  * by Michael Constantine Dimopoulos et al
  * https://mcdim.xyz <mk@mcdim.xyz> GNU GPLv3
@@ -15,7 +15,9 @@
 #include <readline/readline.h>
 #include "select.h"
 
-#define VERSION "2.0.1"
+#define VERSION "2.1"
+
+#define BUFFER_SIZE 1024
 
 #define RED "\x1b[31m"
 #define RESET "\x1b[0m"
@@ -26,9 +28,10 @@ hasUpper(char ch[])
 	int len = strlen(ch);
 	int i;
 	
-	for (i=0; i<len; i++) {
+	for (i = 0; i < len; i++) {
 		if (isupper(ch[i])) return 1;
 	} 
+
 	return 0;
 }
 
@@ -54,10 +57,14 @@ starts_with(const char *a, const char *b)
 }
 
 static void
-dprint(char *name)
+dprint(char *name, int clean_out)
 {
-	printf("[" RED "+" RESET "] Definite identification: "
+	if (!clean_out) {
+		printf("[" RED "+" RESET "] Definite identification: "
 	       RED "%s" RESET "\n", name);
+	} else {
+		printf("%s 100.00\n", replace(name));
+	}
 }
 
 
@@ -66,29 +73,29 @@ dprint(char *name)
  * based on *definite* characteristics
  */
 void
-definite(char string[], int length)
+definite(char string[], int length, int co)
 {
 
 	if (starts_with(string, "$P"))
-		dprint("Wordpress hash");
+		dprint("Wordpress hash", co);
 	else if (starts_with(string, "$1$"))
-		dprint("MD5 crypt(3)");
+		dprint("MD5 crypt(3)", co);
 	else if (starts_with(string, "$5$"))
-		dprint("SHA256 crypt(3)");
+		dprint("SHA256 crypt(3)", co);
 	else if (starts_with(string, "$6$"))
-		dprint("SHA512 crypt(3)");
+		dprint("SHA512 crypt(3)", co);
 	else if (string[length-1]=='=') 
-		dprint("Base64 or Base32");
+		dprint("Base64 or Base32", co);
 	else if (starts_with(string, "$apr1$"))
-		dprint("APR1");
+		dprint("APR1", co);
 	else if (starts_with(string, "$H$"))
-		dprint("phpBB");
+		dprint("phpBB", co);
 	else if (starts_with(string, "sha1$"))
-		dprint("SHA1 Django");
+		dprint("SHA1 Django", co);
 	else if (length==65 && string[32]==':')
-		dprint("MD5 Joomla (pass:salt)");
+		dprint("MD5 Joomla (pass:salt)", co);
 	else if (starts_with(string, "$2y$"))
-		dprint("PHP password_hash");
+		dprint("PHP password_hash", co);
 }
 
 /* this function determines charset*/
@@ -110,58 +117,59 @@ charset(char string[])
 static void
 help(char *exename)
 {
-	printf( "Houndsniff is  a hash recognition tool.\n"
-		"It works by extracting some info about	\n"
-		"the hash and comparing it to info about\n"
-		"other hashes in a local database. Then,\n"
-		"it prints the matches sorted by  their \n"
-		"popularity, which is determined by web	\n"
-		"search result numbers in comparison to	\n"
-		"other hashes with the same features	\n\n"
+	printf( "If your hash includes a dollar sign ($) or other\n"
+		"special symbols, make sure you place it in between\n"
+		"quotes.\n\n"
 
-		"If your hash includes a dollar sign ($)\n"
-		"make sure you place it in between quotes.\n\n"
-
-		"By Michael Constantine Dimopoulos et al\n"
-		"Contributors:"
+		"Contributors:\n"
 		"Christopher Wellons, Martin K.\n"
 		"tuu & fizzie on ##c@freenode\n\n"
 
-		"-l to list supported hashing algorithms\n"
-		"-s for an interactive shell\n"
-		"-h to display this panel and exit\n"
-		"\nUsage: Usage: %s [HASH] [-h] [-l] [-s]\n",
+		"  -i   use interactive shell\n"
+		"  -s   use scripting mode\n"
+		"  -l   list supported hashing algorithms\n"
+		"  -h   display this panel and exit\n"
+		"  -v   print version and exit\n"
+		"\nUsage: Usage: %s [HASH] [-h|-v|-l] [-i] [-s]\n",
 		exename);
 }
 
 void
-driver(char *hash)
+driver(char *hash, int clean_out)
 {
 	int len = strlen(hash);
 	const char* chars = charset(hash);
-	printf("Hash: " RED "%s" RESET "\n", hash);
-	printf("Length: " RED "%d" RESET "\n",len);
-	printf("Charset: " RED "%s" RESET "\n\n", chars);
-	sel(len, chars);
-	definite(hash, len);
+
+	if (!clean_out) {
+		printf("Hash: " RED "%s" RESET "\n", hash);
+		printf("Length: " RED "%d" RESET "\n",len);
+		printf("Charset: " RED "%s" RESET "\n\n", chars);
+	}
+
+	sel(len, chars, clean_out);
+	definite(hash, len, clean_out);
+
 	printf("\n");
 }
 
 void
 main(int argc, char* argv[])
 {
-	banner();
 
 	if (argc==1) {
-		printf("Usage: %s [HASH] [-h] [-l] [-s]\n", argv[0]);
+		banner();
+		printf("Usage: %s [HASH] [-h|-v|-l] [-i] [-s]\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 
 	if (strcmp(argv[1],"-h")==0 || strcmp(argv[1],"--help")==0){
+		banner();
 		help(argv[0]);
 	} else if (strcmp(argv[1], "-l")==0) {
+		banner();
 		list();
-	} else if (strcmp(argv[1], "-s")==0) {
+	} else if (strcmp(argv[1], "-i")==0) {
+		banner();
 		using_history();
 		while(1) {
 			char *hash;
@@ -171,12 +179,22 @@ main(int argc, char* argv[])
 			if (!hash) break;
 			
 			add_history(hash);
-			driver(hash);
+			driver(hash, 0);
 			printf("--------------------------\n");
 			free(hash);
 		}
+	} else if (strcmp(argv[1], "-s")==0) {
+		char buffer[BUFFER_SIZE];
+		while (fgets(buffer, sizeof(buffer), stdin) != NULL) {
+			strtok(buffer, "\n");
+			driver(buffer, 1);
+		}
+
+	} else if (strcmp(argv[1], "-v")==0) {
+		printf("houndsniff-v%s\n", VERSION);      
 	} else {
-		driver(argv[1]);
+		banner();
+		driver(argv[1], 0);
 	}
 	exit(EXIT_SUCCESS);
 }
